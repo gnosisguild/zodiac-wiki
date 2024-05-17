@@ -10,5 +10,8 @@ export default {
   },
   primaryHue: 45,
   primarySaturation: 30,
+  sidebar: {
+    defaultMenuCollapseLevel: 1,
+  },
   // ... other theme options
 };
