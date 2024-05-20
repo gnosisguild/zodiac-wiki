@@ -1,0 +1,84 @@
+# Bridge Module: Operator Tutorial
+
+![Bridge Module](/Bridge-module.png)
+
+## 01 Get started
+
+### About the Zodiac Bridge Module
+
+This Zodiac Bridge Module allows an address on one chain to control an avatar (account) on another chain using an Arbitrary Message Bridge (AMB). This enables a DAO on one chain to control assets and interact with systems like a Safe on a different chain. (See the latest compatible chains [here](/documentation/bridge-module).) [Learn more about the Bridge Module](/documentation/bridge-module).
+
+This tutorial is for DAO Operators using the Zodiac App interface. For a more technical guide on how to use the Bridge Module beyond the Zodiac App interface, see the Github repo [Setup Guide](https://github.com/gnosisguild/zodiac-module-bridge/blob/main/docs/setup_guide.md).
+
+If you need support or have questions about this tutorial or Zodiac, join the [Gnosis Guild Discord](https://discord.gg/gnosisguild).
+
+
+### Set Up a Safe (formerly Gnosis Safe)
+
+If you've already set up a Safe you'd like to use for this tutorial, skip to the next step below. If you have not set up a Safe, check out the Safe Help Center. The [Create a Safe](https://help.gnosis-safe.io/en/articles/3876461-create-a-safe) tutorial will walk you through the full process of creating a new Safe account in just 60 seconds.
+
+Note that, for the purposes of this tutorial, we'll be using a Safe deployed on the Rinkeby test network. 
+
+### Navigate to the Zodiac App
+
+On your Safe's left menu, click the APPS option. Here you'll find apps available through Safe. Search or scroll until you find the Zodiac App.
+
+![Navigate to Zodiac App](/Nav1.png)
+
+Once entering the Zodiac App, you'll see the current Zodiac-compliant collection of tools that have a Zodiac App interface.
+
+![Zodiac App Interface](/Nav2.png)
+
+## 02 Set parameters
+
+Next, click on the Bridge Module available through the Zodiac App on Safe. When you open the Bridge Module, it will look like this:
+
+![Bridge Module Interface](/Bridge01.png)
+
+Now, fill in the Parameters.
+
+The first parameter, `AMB Contract Address`, refers to the contract address for the [Arbitrary Message Bridge](https://docs.tokenbridge.net/eth-xdai-amb-bridge/about-the-eth-xdai-amb) for the chains you would like to send transactions across (e.g. Rinekby-Gnosis Chain).
+
+The second parameter, `Controller Contract Address`, refers to the contract address for the avatar (account) that you would like to control on another chain.
+
+Finally, the `Chain Id` refers to the id of the chain network on which you would like to control another contract.
+
+Let's take an example:
+
+![Example Parameters](/Bridge02.png)
+
+We would like our Safe on Rinkeby to control a Safe on Gnosis Chain (formerly the xDai network). So we've entered:
+
+- `AMB Contract Address`: 0xD4075FB57fCf038bFc702c915Ef9592534bED5c1 (Address of the Rinkeby-Gnosis Chain network AMB)
+- `Controller Contract Address`: 0xFF50a6..D2 (Address of our Safe on Gnosis Chain)
+- `Chain Id`: 100 (Chain id of Gnosis Chain)
+
+### Add module
+
+When satisfied with the Parameters you've entered, click the "Add Module" button.
+
+### Submit transaction
+
+After that, you should see a Safe modal prompting you to review the transaction. Click "Submit" when ready.
+
+![Submit Transaction](/Bridge03.png)
+
+Confirm the transaction with your web3 wallet that is a signer on the Safe.
+
+## 03 Review module
+
+After confirming the transaction, return to a window that displays your configured Bridge Module's settings. From here, you can read, write, or remove the module at any time.
+
+![Review Module](/Bridge04.png)
+
+### Read and write contract
+
+The list of configured Parameters are visible under the "Read Contract" tab. To update these Parameters, click the "Write Contract" tab.
+
+![Read and Write Contract](/Bridge05.png)
+
+Here you'll see a dropdown list of functions available to the Bridge Module.
+
+## Questions?
+
+If you need support or have questions about Zodiac, join the [Gnosis Guild Discord](https://discord.gg/gnosisguild).
