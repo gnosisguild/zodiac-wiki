@@ -1,0 +1,50 @@
+# Roles Modifier
+
+![Roles Modifier Banner](/Banner-roles.jpg)
+
+## Description
+
+Zodiac Roles Modifier is an onchain permissions module for smart accounts. With Roles, onchain entities can extend secure transaction permissions to any address through customizable roles, allowing any account to act on its behalf. The smart contract module attaches to any avatar (a Safe or other web3 account), enabling onchain entities of all sizes to tailor roles and permissions to their needs, ensuring robust, secure, and seamless web3 transactions.
+
+## Overview
+
+- **Zodiac Roles Modifier:** A smart contract module that allows onchain entities to create roles with granular permissions and grant them to any address.
+- **Zodiac Roles Toolkit:** An accompanying kit for developers to make building with Roles more powerful and interacting with it simpler.
+    - **SDK:** A TypeScript software development kit to programmatically manage and navigate roles and permissions
+    - **Subgraph:** A specialized querying tool to easily explore roles and permissions associated with any Zodiac Roles Modifier
+
+*Note: Zodiac Roles Modifier is designed to work seamlessly with [Zodiac Pilot](https://pilot.gnosisguild.org/), a new paradigm in wallet-dapp interaction that allows authorized roles to easily craft multi-send batch transactions on behalf of an onchain entity through a simple interface. [Learn more about the Zodiac Pilot Extension](/documentation/pilot-extension).*
+
+## Core Benefits
+
+- **Role-Based Access Control:** Extends onchain permissions beyond owners/signers, allowing professionals like treasury managers to efficiently manage an org’s critical functions
+- **Streamlined Transaction Execution:** Enables permissioned transactions with clear parameters, eliminating the need for Safe owners/signers to approve every transaction
+- **Hyper Compatibility:** Allows onchain entities to implement nearly any access control pattern on top of nearly any existing onchain system
+- **Robust Security:** Ensures secure transaction environments through meticulous permission scoping and access control safeguards
+- **Efficient Role Management:** Simplifies and streamlines user management tasks and transaction permissions
+
+## Key Features
+
+- **Create & Assign Roles:** Generate custom roles and assign them to any address
+- **Fine-Tune Permissions:** Assign granular permissions to each role, scoping authorized addresses, designated functions, and allowed parameter values through a highly expressive conditions system
+- **Set Rate and Threshold Limits:** Set limits on how frequently a given role or permission can be used, along with thresholds for the scoped parameters granted by a given permission
+- **Execute Secure Transactions:** Authorize role members to perform secure transactions on behalf of the avatar (e.g. a Safe or other compatible smart account)
+- **Manage Roles & Permissions:** Manage roles and query permissions using the TypeScript SDK and integrated subgraph
+
+## Example Use Cases
+
+- A DAO wants to issue credentials to its community for the purpose of work contributions through its Safe. In order to bypass signature requirements for every update, the DAO equips the Roles Modifier and limits the signature requirement to a single designated account, which can now issue credentials on behalf of the DAO with more efficiency.
+- A DAO wants to implement a DeFi strategy to generate yield, but the Safe owners are not experts in treasury management. By specifying role-based permissions for a specific address using the Roles Modifier, the DAO can hire a third-party treasury manager to use [Zodiac Pilot](/documentation/pilot-extension) to simulate and batch DeFi transactions on its behalf, all in a non-custodial, transparent, and trust-minimized way. (For a detailed breakdown of this example, [visit this tweet thread](https://twitter.com/santinomics_/status/1613576303483162627).)
+
+## Tutorials
+
+- [Tutorial for DAO Operators](/documentation/roles-modifier/roles-modifier-operator-tutorial): This tutorial has the perspective of a steward, admin, or manager of an organization using the Roles Modifier. (Note: This tutorial is for Roles Mod v.1. The operator tutorial for v2 will come once the revamped mod is integrated into the Zodiac Safe App.)
+- [Tutorial for DAO Developers](https://github.com/gnosisguild/zodiac-modifier-roles): This tutorial has the perspective of a developer who is comfortable with the command line and would like to implement, modify, or build upon the Roles Modifier. (Note: This tutorial is for Roles Mod v2. The Roles Mod v1 developer tutorial can be found [here](https://github.com/gnosisguild/zodiac-modifier-roles-v1).)
+
+## Interfaces
+
+![Roles Modifier Interface 1](/Roles02.png)
+
+![Roles Modifier Interface 2](/Roles08.png)
+
+![Roles Modifier Interface 3](/Roles04.png)

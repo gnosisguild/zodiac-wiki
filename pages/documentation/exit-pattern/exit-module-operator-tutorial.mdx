@@ -1,0 +1,103 @@
+# Exit Module: Operator Tutorial
+
+![Exit Module](/Exit-module.jpg)
+
+### About the Zodiac Exit Module
+
+The Exit Module allows members to redeem a designated token for a proportion of an avatar's (account's) digital assets, similar to Moloch DAO's [rageQuit()](https://twitter.com/molochdao/status/1115451404242436098) function. [Learn more about the Zodiac Exit Pattern](/documentation/exit-pattern).
+
+This tutorial is for DAO Operators using the Zodiac App interface to equip the Exit Module on their Safe account, making it possible for members to exit the organization.
+
+Note: The Exit Mod is complemented by the Exit App, a standalone interface available at [exit.gnosisguild.org](https://exit.gnosisguild.org/) or via the Exit App available through Safe Apps. Members can use the Exit App to redeem their tokens from a Safe account on which the Exit Module has been equipped.
+
+For a more technical guide on how to use the Exit Module beyond the interface, see the Github repo [for the DAO Developers Setup Guide](https://github.com/gnosisguild/zodiac-module-exit).
+
+If you need support or have questions about this tutorial or Zodiac, join the [Gnosis Guild Discord](https://discord.gnosisguild.org).
+
+## 01 Get started
+
+### Set Up a Safe (formerly Gnosis Safe)
+
+If you've already set up a Safe you'd like to use for this tutorial, skip to the next step below. If you have not set up a Safe, set one up [here](https://safe.global). Note that, for the purposes of this tutorial, we'll be using a Safe deployed on the Rinkeby test network. 
+
+### Navigate to the Zodiac App
+
+On your Safe's left menu, click the "APPS" option. Here you'll find apps available through Safe. Search or scroll until you find the Zodiac App.
+
+![Navigate to Zodiac App](/Nav1.png)
+
+Once entering the Zodiac App, you'll see the current Zodiac-compliant collection of tools that have a Zodiac App interface.
+
+![Zodiac App Interface](/Nav2.png)
+
+## 02 Designate Token
+
+Next, click on the Exit Module available through the Zodiac App on Safe. When you open the Exit Module, it will look like this:
+
+![Exit Module Interface](/Exit01.png)
+
+The Exit Module prompts you to enter a `Token Contract Address`. The Token Contract Address refers to the ERC-20 or ERC-721 (NFT) token that members can redeem for a proportion of this account’s ERC-20 digital assets.
+
+### Token Contract Address
+
+If you need to find the Token Contract Address, look up the token on a block explorer like [Etherscan](https://etherscan.io/). Be sure to verify these details are correct and do not correspond to another similarly named token.
+
+## 03 Add Module
+
+Once you've entered the token's `Token Contract Address`, click the "Add Module" button:
+
+![Add Module](/Exit02.png)
+
+### Submit Transaction
+
+After that, you should see a Safe modal prompting you to review the transaction. Click "Submit" when ready.
+
+![Submit Transaction](/Exit03.png)
+
+Confirm the transaction with your web3 wallet that is a signer on the Safe.
+
+### Review Module
+
+After confirming the transaction, return to a window that displays your configured Exit Module's settings. From here, you can read, write, or remove the module at any time.
+
+![Review Module](/Exit04.png)
+
+The list of configured Parameters are visible under the "Read Contract" tab. They can be defined as such:
+
+`circulatingSupply`:
+
+`deniedTokens`:
+
+`designatedToken`: This is the contract address of the designated token.
+
+`executor`: This is the contract address of the module executor, the avatar (account) that can execute related tasks.
+
+`getCirculatingSupply`: This returns the token's circulating supply amount.
+
+`initialized`: This returns a Boolean (true or false) regarding whether the module is initialized.
+
+`owner`: This is the contract address of the module owner.
+
+## 04 Write Contract
+
+To update these Parameters, click the "Write Contract" tab.
+
+![Write Contract](/Exit05.png)
+
+Here you'll see a dropdown list of functions available to the Exit Module.
+
+## 05 Glossary of Terms
+
+Here is a list of terms that you’ll see the Exit App use that you can refer back to if any are unclear.
+
+- **Zodiac Exit:** a Zodiac pattern that allows members to redeem a designated token for a proportion of an avatar's (Safe or other account's) ERC-20 and native digital assets, similar to Moloch DAO's rageQuit() function.
+- **Zodiac Exit Mod:** a Zodiac module that can be equipped on a Safe account using the Zodiac App, or equipped on another compatible web3 account.
+- **Exit App:** an application that provides members a friendly interface to redeem a designated token from a Safe equipped with the Exit Module.
+- **Redeemable assets:** an avatar’s designated fungible or non-fungible tokens that an exiting member can redeem for an avatar’s claimable assets.
+- **Claimable assets:** an avatar’s assets that an exiting member can claim in exchange for the redeemable asset.
+- **Circulating supply:** the dynamically calculated number of tokens available and circulating in the market (not to be confused with max supply or total supply).
+- **Safe:** a web3 avatar or programmable account with multi-signature functionality (a.k.a. a Safe).
+
+## Questions?
+
+If you need support or have questions about Zodiac, join the [Gnosis Guild Discord](https://discord.gnosisguild.org).
