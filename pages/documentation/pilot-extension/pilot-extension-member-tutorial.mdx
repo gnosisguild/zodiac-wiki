@@ -1,0 +1,89 @@
+# Pilot Extension: Member Tutorial
+
+![Pilot Extension](/Pilot00.png)
+
+### About Zodiac Pilot
+
+Zodiac Pilot is a [Chrome extension](https://chrome.google.com/webstore/detail/zodiac-pilot/jklckajipokenkbbodifahogmidkekcb?hl=en&authuser=0) that enables users to simulate, record, and batch dapp transactions on behalf of a DAO. By using the Pilot extension, owners of a Safe (avatar) or any address designated in a mod like the [Roles Modifier](/documentation/roles-modifier) can verify dapp interactions before submitting them as a multi-send batch transaction for gas savings and easy signing. [Learn more about the Zodiac Pilot Extension](/documentation/pilot-extension).
+
+Note: To use Zodiac Pilot, you must either be an owner on the Safe or have an address with whitelisted permissions set in a modifier like the [Roles Modifier](/documentation/roles-modifier) or [Delay Modifier](/documentation/delay-modifier).
+
+## 01 Get started
+
+### Install Zodiac Pilot
+
+Visit the [Zodiac Pilot website](https://pilot.gnosisguild.org/) and click on "Install Extension."
+
+This will take you to the [Chrome Web Store](https://chrome.google.com/webstore/detail/zodiac-pilot/jklckajipokenkbbodifahogmidkekcb), where you can install the extension on any Chrome-enabled browser (Google Chrome, Brave, Opera, Edge).
+
+![Install Zodiac Pilot](/Pilot01.png)
+
+Once installed, find the app in your browser's extension list or visit [the Zodiac Pilot homepage](https://pilot.gnosisguild.org/).
+
+## 02 Add a connection
+
+When you open the Zodiac Pilot extension, it will look like this:
+
+![Add a connection](/Pilot02.png)
+
+In order to simulate and batch transactions, you must create a connection.
+
+Note: Connection settings are automatically saved during creation. You can view and adjust connection settings at any time from the [Zodiac Pilot homepage](https://pilot.gnosisguild.org/).
+
+### Configure Accounts and Settings
+
+- **Connection label:** Enter a name for the connection.
+- **Pilot Account:** This account refers to the specific address intended to act as the pilot for the Safe (avatar). To be a pilot, you must either be an owner on the Safe or have an address with whitelisted permissions set in the [Roles Modifier](/documentation/roles-modifier). To connect the Pilot Account, log in via WalletConnect or MetaMask.
+- **Piloted Safe:** This account refers to the address of the Safe from which transactions will be executed. Once the Pilot Account is connected, any associated Safe addresses will appear in the dropdown menu, but you can also input any Safe address in the field.
+- **Zodiac Mod:** This section allows you to specify whether you'd like to submit the multi-send transaction directly to the Safe or through a Zodiac mod. The dropdown menu will automatically include any compatible Zodiac mod already attached to the Piloted Safe (supported mods include the Roles Modifier and Delay Modifier).
+
+❗ If the Pilot Account is an owner, choose "No mod — Direct execution" to submit transactions directly to the Safe.
+
+❗ If the Pilot Account is *not* an owner, the transaction should be routed through a Zodiac modifier:
+
+- Routing through the [Roles Modifier](/documentation/roles-modifier) allows owners to set the Pilot Account to an address with granular permissions specified in the mod. Be sure to choose the correct Role ID associated with the Pilot Account.
+- Routing through the [Delay Modifier](/documentation/delay-modifier) allows owners to set the Pilot Account to a module — including an EOA — enabled on the mod. Submitted transactions will be pre-authorized but will need triggering after the configured delay.
+
+In the example below, transactions will be submitted directly to the Safe.
+
+![Configure Accounts and Settings](/Pilot03.png)
+
+Your connection is now set.
+
+Remember: Connection settings are automatically saved during creation. You can view and adjust connection settings at any time from the [Zodiac Pilot homepage](https://pilot.gnosisguild.org/).
+
+![Connection Settings](/Pilot04.png)
+
+## 03 Launch Zodiac Pilot
+
+Once you have adjusted the settings and specified the correct accounts, you are ready to start using Zodiac Pilot.
+
+Click the Launch button at the top-right of the app or click on the connection name if you're on the Pilot homepage.
+
+While Pilot works with almost every dapp that uses an injected wallet, we provide a list of confirmed working dapps in the connection toolbar. You may also enter the URL of a dapp directly in Pilot’s URL bar. (Note: If you run into problems with a dapp, [let us know](https://discord.gnosisguild.org). We may be able to add support for it in an upcoming release.)
+
+![Launch Zodiac Pilot](/Pilot05.png)
+
+### Simulate and record transactions
+
+From here, how Zodiac Pilot is used will depend on the dapp.
+
+Generally speaking, the Pilot Account impersonates the Piloted Safe while interacting with the dapp. Transactions will be recorded in the right panel and automatically simulated in a temporary blockchain fork. That way it appears to the dapp that any submitted transaction is immediately signed and mined.
+
+✔️ Here is a screenshot of the Zodiac Pilot UI connected to Lido, which shows that the transaction simulation and role permission in this interaction are successful:
+
+![Zodiac Pilot UI with Lido](/Pilot06.png)
+
+❌ Here is a screenshot of the Zodiac Pilot UI connected to Balancer, which shows that the transaction simulation was successful but the role permission was NOT successful. (In this example, the Roles Modifier wasn't configured to allow the Pilot Account to execute this specific transaction.)
+
+![Zodiac Pilot UI with Balancer](/Pilot07.png)
+
+### Submitting transactions
+
+Once the transactions are verified, the Pilot Account can then sign and submit them as a multi-send batch to the Safe by hitting "Submit" at the bottom of the right panel.
+
+From there, the normal Safe mechanism for approving a transaction bundle will take over.
+
+## Questions?
+
+If you need support or have questions about Zodiac, join the [Gnosis Guild Discord](https://discord.gnosisguild.org).

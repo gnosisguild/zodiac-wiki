@@ -1,0 +1,122 @@
+![Zodiac Banner](/Banner-zodiac.jpg)
+
+## What Is Zodiac?
+
+The expansion pack for DAOs, Zodiac is a collection of tools built according to an [open standard](https://eips.ethereum.org/EIPS/eip-5005). The Zodiac open standard enables DAOs to act more like constellations, connecting protocols, platforms, and chains, no longer confined to monolithic designs.
+
+The Zodiac open standard enables:
+
+- **Flexible**, module-based control of programmable accounts (avatars)
+- **Un-opinionated** standards for programmable account interaction
+- **Reusable** implementations of core and factory logic
+
+To learn more about the ideas behind Zodiac, visit the [Gnosis Guild blog](http://gnosisguild.mirror.xyz/).
+
+## Who Is Zodiac For?
+
+- **DAO Operators:** If you are a steward, admin, or manager of an organization with a [Safe](https://safe.global), use the collection of tools through the Zodiac App and read through the operator tutorials.
+- **DAO Members:** If you are a member of an organization that uses a Zodiac tool, read through the member tutorials.
+- **DAO Developers:** If you are a developer who is comfortable with the command line and would like to implement, modify, or build upon Zodiac, visit the developer tutorials [here](https://github.com/gnosisguild/zodiac).
+
+Anyone can contribute to the Zodiac-compliant collection of tools by submitting a pull request on the [repository](https://github.com/gnosisguild/zodiac).
+
+## The Zodiac Architecture
+
+- **Avatars** are programmable Ethereum accounts, like [Safe](https://safe.global/). Avatars are the address that holds balances, owns systems, executes transaction; is referenced externally; and ultimately represents your DAO. Avatars must expose an interface like `IAvatar.sol`.
+- **Modules** are contracts enabled by an Avatar that implement some decision making logic. They should import `Module.sol`.
+- **Modifiers** are contracts that sit between Modules and Avatars to modify the Module's behavior. For example, they might enforce a delay on all functions a Module attempts to execute. Modifiers should import `Modifier.sol` and must expose an interface like `IAvatar.sol`.
+- **Guards** are contracts that can be enabled on Modules and implement pre- or post-checks on each transaction that the Module executes. This allows Avatars to do things like limit the scope of addresses and functions that a module can call or ensure a certain state is never changed by a module. Guards should import `BaseGuard.sol`.
+
+![Zodiac Protocol](/Zodiac-protocol.jpg)
+
+## Zodiac-Compliant Tools
+
+Zodiac embraces [Safe](https://safe.global/) (formerly Gnosis Safe) as a powerful, extensible and programmable account standard, which we call an **avatar**. The Zodiac App can be accessed through Safe. However, all Zodiac tools are framework agnostic, and they can be plugged into any programmable account that implements the [IAvatar](https://github.com/gnosisguild/zodiac/blob/master/contracts/interfaces/IAvatar.sol) interface.
+
+### Avatars
+
+- **[Safe](https://safe.global/)** (formerly Gnosis Safe): The most trusted platform for managing digital assets on Ethereum. Zodiac embraces Safe as a powerful, extensible and programmable account standard. Safe is the reference implementation of the IAvatar.sol interface specified in this library. However, all Zodiac tools are framework agnostic, and they can be plugged into any programmable account that implements the IAvatar interface.
+
+### Modules
+
+- **[Bridge](/documentation/bridge-module)** (developed by [Gnosis Guild](https://www.gnosisguild.org/)): This module allows an address on one chain to control an avatar on another chain using an Arbitrary Message Bridge (AMB). This enables a DAO on one chain to control assets and interact with systems like a Safe on a different chain.
+- **[Connext](https://github.com/gnosis/zodiac-module-connext/)** (developed by [Connext](https://www.connext.network/) + [Gnosis Guild](https://www.gnosisguild.org/)): This module enables [governance](https://blog.connext.network/crosschain-governance-a-new-integration-connext-x-zodiac-gnosis-guild-5cf119a6cf2ecrosschain), allowing an avatar to be the target of any arbitrary function call originating from a Safe on another domain (chain or rollup) using Connext, a modular protocol for cross-domain communication.
+- **[Exit](/documentation/exit-pattern)** (developed by [Gnosis Guild](https://www.gnosisguild.org/)): This module allows members to redeem a designated token, including an NFT, for a proportion of an avatar's digital assets, similar to Moloch DAO's rageQuit() function. Members can use the Exit App to redeem their tokens.
+- **[Governor](/documentation/governor-module)** (developed by [Gnosis Guild](https://www.gnosisguild.org/)): The module enables an OpenZeppelin Governor contract as a Safe module. By equipping the most popular on-chain governance framework as a module, a multisig can seamlessly transition into a multiplayer DAO with on-chain voting, while still maintaining flexibility and optionality.
+- **[oSnap](https://docs.umaproject.org/developers/osnap/osnap-quick-start)** (developed by [UMA](https://umaproject.org/) x [Snapshot](https://snapshot.org/)): This module allows organizations to put their off-chain Snapshot votes on-chain using UMA's optimistic oracle, while also granting community members the power to execute proposals themselves.
+- **[Kleros Snapshot Module](https://docs.kleros.io/integrations/types-of-integrations/1.-dispute-resolution-integration-plan/channel-partners/kleros-reality-module)** (developed by [Kleros](https://kleros.io/)): This module is similar to the Reality Module, which allows on-chain execution based on the outcome of events reported by the Reality.eth oracle, using Kleros as arbitrator.
+- **[Reality](/documentation/reality-module)** (developed by [Gnosis Guild](https://www.gnosisguild.org/)): This module allows on-chain execution based on the outcome of events reported by the Reality.eth oracle. While built initially to execute Safe transactions according to Snapshot proposals, this module is framework agnostic. It can enable proposal execution from just about anywhere.
+- **[Safe Minion](https://daohaus.substack.com/p/6991f40b-3931-47ff-bea3-fa6f9c365135?s=r)** (developed by [DAOhaus](https://daohaus.club/)): This module allows Moloch DAOs to manage the assets in a Safe based on the outcome of v2 Moloch DAO proposals. Safe Minion enables Moloch DAOs to manage collections of NFTs, manage LP positions with AMMs, and initiate any other arbitrary interactions. It enables DAOs that start as a Safe to later delegate governance to a Moloch DAO.
+- **[Siphon](https://github.com/gnosisguild/zodiac-module-siphon)** (developed by [Gnosis Guild](https://www.gnosisguild.org/)): This module exposes a public interface that allows anyone to trigger an avatar to withdraw from a designated liquidity position to pay down some of its debt in a designated debt position, thereby improving the health of the position.
+- **[Tellor](https://github.com/tellor-io/snapshot-zodiac-module)** (developed by [Tellor](https://tellor.io/)): This module allows successful Snapshot proposals to execute transactions using the Tellor oracle.
+- **[Usul](https://github.com/SekerDAO/Usul)** (developed by [Seker Factory DAO](https://sekerdao.com/)): This module allows avatars to operate with trustless tokenized DeGov, similar to Compound or Gitcoin, with a time-boxed proposal core that can register swappable voting contracts. This enables DAOs to choose from various on-chain voting methods that best suit their needs.
+
+### Modifiers
+
+- **[Badger Access Control (BAC)](https://assets.website-files.com/5fcaa3a6fcb269f7778d1f87/63567cc61762834da944c575_Kolektivo%20Bluepaper.pdf)** (developed by [Kolektivo](https://www.kolektivo.network/)) is a fork of Gnosis Zodiac’s Roles Modifier. It enables a Safe to delegate the permission to call certain functions on behalf of the Safe to another externally owned address or smart contract. A so-called delegate can call specified functions without requiring the M of N consent of the associated Safe. As opposed to Zodiac’s original implementation which kept the record of delegates internally, BAC refers to an external ERC1155 token contract — the Badger — to determine if an address is a qualified delegate, namely by checking if that address holds the required badge — a type of NFT.
+- **[Delay](/documentation/delay-modifier)** (developed by [Gnosis Guild](https://www.gnosisguild.org/)): This modifier allows avatars to enforce a time delay between when a module initiates a transaction and when it can be executed by an avatar.
+- **[Roles](/documentation/roles-modifier)** (developed by [Gnosis Guild](https://www.gnosisguild.org/)): This modifier allows for fine-grained, role-based, access control for enabled modules. Scopes for a given role include allowed addresses, and optionally include allowed functions on allowed addresses, allowed parameters on allowed functions, whether or not delegate calls are allowed to an allowed address, and whether or not value (ETH) can be sent to an allowed address.
+- **[SecretDelay](https://assets.website-files.com/5fcaa3a6fcb269f7778d1f87/63567cc61762834da944c575_Kolektivo%20Bluepaper.pdf)** (developed by [Kolektivo](https://www.kolektivo.network/)) is a fork of Zodiac’s Delay Modifier. The original Delay modifier introduces a three step process for making Safe transactions: (1) authorized addresses can propose a transaction, then after a (2) pre-configured cooldown period passes, (3) the transaction becomes executable by anyone. During the cooldown period, the associated Safe can step in and dismiss a proposed transaction. SecretDelay extends these capabilities by adding two features: It allows to propose secret transactions by just submitting a hash of the transaction in the first step, and it introduces an acceleration mechanism where the associated Safe signers may approve transactions for immediate execution. The addition of these two features better serve a real-world user community, where certain transactions may need to be private or expedited in the event of an emergency without any major disruption to the functioning of a community economy.
+
+### Guards
+
+- **[MetaGuard](https://github.com/cardstack/cardstack-meta-guard)** (developed by [Cardstack](https://twitter.com/cardstack)): This guard allows an avatar to have multiple checking processes by registering multiple guards to this meta guard.
+- **[Scope](https://github.com/gnosisguild/zodiac-guard-scope)** (developed by [Gnosis Guild](https://www.gnosisguild.org/)): This guard allows an avatar to limit the scope of the addressable functions with which its owners can interact. This enables the avatar to define granular permissions for different control mechanisms.
+
+Have you built something cool belonging to the Zodiac collection of tools and want to add it to the list? Open a PR!
+
+
+## FAQ: Zodiac Standard
+
+<details>
+<summary>What is the Zodiac standard?</summary>
+
+The expansion pack for DAOs, Zodiac is a collection of tools built according to an open standard. The Zodiac open standard enables DAOs to act more like constellations, connecting protocols, platforms, and chains, no longer confined to monolithic designs. To learn more about the ideas behind Zodiac, visit the [Gnosis Guild blog](http://gnosisguild.mirror.xyz/).
+
+</details>
+
+<details>
+<summary>What is the relationship between Gnosis Guild and the Zodiac standard?</summary>
+
+Gnosis Guild is a core contributor to the Zodiac open standard. As an initial contributor, Gnosis Guild approves which submissions comply with the standard. It embraces practices that will over time meaningfully distribute contribution, governance, and ownership of the value Zodiac produces, encouraging individuals, teams, and DAOs to participate.
+
+</details>
+
+<details>
+<summary>How can I get started with Zodiac?</summary>
+
+Use the Zodiac collection of tools through the Zodiac App available on [Safe](https://safe.global/) (formerly Gnosis Safe), and read through the tutorials and documentation on this site and the [repo](https://github.com/gnosisguild/zodiac).
+
+</details>
+
+<details>
+<summary>Which networks/chains does Zodiac support?</summary>
+
+For a list of supported networks, [visit this link](https://github.com/gnosisguild/zodiac/blob/master/src/factory/contracts.ts#L24-L35).
+
+</details>
+
+<details>
+<summary>Can anyone contribute to Zodiac?</summary>
+
+Yes. True to its philosophy, Zodiac is open for participation. Anyone can contribute to the Zodiac collection of tools by submitting a pull request on [the repositories](https://github.com/gnosisguild/zodiac). Learn more about contributing to the Zodiac standard [here](https://github.com/gnosisguild/zodiac/blob/master/CONTRIBUTING.md).
+
+</details>
+
+<details>
+<summary>Where can I get support for Zodiac?</summary>
+
+Find technical and development support in the #support and #developers channels in the [Gnosis Guild Discord server](https://discord.gnosisguild.org).
+
+</details>
+
+<details>
+<summary>Where can I get the latest updates on Gnosis Guild and Zodiac?</summary>
+
+Follow Gnosis Guild on [Twitter](https://twitter.com/gnosisguild) and check out the #announcements channel in the [Gnosis Guild Discord server](https://discord.gnosisguild.org).
+
+</details>
+
+## Questions?
+
+If you need support or have questions about Zodiac, join the [Gnosis Guild Discord](https://discord.gnosisguild.org).
