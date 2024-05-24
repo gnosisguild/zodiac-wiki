@@ -1,0 +1,95 @@
+# Governor Module: Operator Tutorial
+
+![Governor Module](/Banner-oz-governor.jpg)
+
+### About the Zodiac Governor Module
+
+The Zodiac Governor Module enables an [OpenZeppelin Governor](https://blog.openzeppelin.com/governor-smart-contract/) contract as a Safe module. By equipping the most popular on-chain governance framework as a module, a multisig can seamlessly transition into a multiplayer DAO with on-chain voting, while still maintaining flexibility and optionality. [Learn more about the Governor Module](/documentation/governor-module).
+
+This tutorial is for DAO Operators using the Zodiac App interface. If you need support or have questions about this tutorial or Zodiac, join the [Gnosis Guild Discord](https://discord.gnosisguild.org).
+
+## 01 Get started
+
+### Set Up a Safe (formerly Gnosis Safe)
+
+If you've already set up a Safe you'd like to use for this tutorial, skip to the next step below. If you have not set up a Safe, set one up [here](https://safe.global). Note that, for the purposes of this tutorial, we'll be using a Safe deployed on the Rinkeby test network. 
+
+### Navigate to the Zodiac App
+
+On your Safe's left menu, click the APPS option. Here you'll find apps available through Safe. Search or scroll until you find the Zodiac App.
+
+![Navigate to Zodiac App](/Nav1.png)
+
+Once entering the Zodiac App, you'll see the current Zodiac-compliant collection of tools that have a Zodiac App interface.
+
+![Zodiac App Interface](/Nav3.png)
+
+## 02 Add Governor Module
+
+There are two major steps to add a Governor Module to your Safe: (1) set up a token for voting, and (2) set up an OZ Governor contract. Let's go through each one, step-by-step.
+
+First, click on the Governor Module available through the Zodiac App on Safe. When you open the Governor Module, it will look like this:
+
+![Governor Module Interface](/Governor01.png)
+
+### Set Up Token for Voting
+
+Now, you must set up a token for voting.
+
+The token that you choose will enable members to vote on proposals with this governor contract. The token must be compatible with ERC20Votes, which supports voting and vote delegation (and is also compatible with Compound's token, with uint96 restrictions). To learn more about ERC20Votes, visit [OpenZeppelin](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#ERC20Votes).
+
+Choose from one of the following token configurations:
+
+- `Existing Token`: This refers to a previously deployed token that's compatible with ERC20Votes. Simply paste the token address in the "Token Address" field if you choose this option.
+- `Deploy a new ERC20 for voting`: This option allows you to deploy a new fungible token. If you choose this option, simply input a token name in "Token Name" (e.g. Gnosis) and a token symbol in "Token Symbol" (e.g. GNO).
+- `Deploy a new ERC721 for voting`: This option allows you to deploy a new non-fungible token. If you choose this option, simply input a token name in "Token Name" (e.g. Terraforms) and a token symbol in "Token Symbol" (e.g. LOOT).
+
+![Set Up Token for Voting](/Governor02.png)
+
+In the example above, we are creating a new ERC721 token called Muxtai, with token symbol MXT.
+
+When satisfied with your token configuration, click "Next."
+
+### Setup OZ Governor Contract
+
+You must now configure your governor contract. Please note that these configurations can be changed later, so don't worry too much about getting it perfect the first time.
+
+1. **DAO Name:** Choose a DAO name and enter it in the "DAO Name" field.
+
+2. **Voting Delay Configurations:** Configure a delay modifier to determine the duration required before voting (Cooldown) and the amount of time that the proposal will be valid (Expiration).
+
+You have two parameters to configure:
+
+- `Voting Delay (in blocks)`: This number refers to the time (in blocks) between proposal submission and when voting starts.
+- `Voting Period (in blocks)`: This number refers to the number of blocks between when a proposal's voting period starts and ends.
+
+3. **Voting Thresholds:**
+
+- `Proposal Threshold`: This number refers to how many tokens a member must own before submitting a proposal to the DAO.
+- `Quorum (%)`: This number refers to the minimum percentage of members required for quorum.
+
+![Setup OZ Governor Contract](/Governor03.png)
+
+In the example above, we are creating a DAO named Muxtai. Assuming block time of around 13.14 seconds, the Voting Delay is set to 6570 blocks (~1 day) and Voting Period to 45992 blocks (~1 week). The contract requires 1 ERC721 to submit a proposal and 5% of members for quorum.
+
+When satisfied with your OZ governor contract settings, click "Next."
+
+### Deploy and Enable Module
+
+You will now be able to review the details of your OZ Governor Module.
+
+If everything looks correct, click "Deploy and Enable Module."
+
+This will trigger a transaction request for your Safe, which will deploy both your token and OZ Governor contract, and enable the module.
+
+Click "Submit" to finalize.
+
+![Deploy and Enable Module](/Governor04.png)
+
+## 03 Review module
+
+After confirming the transaction, return to a window that displays your configured Governor Module's settings. From here, you can read, write, or remove the module at any time.
+
+## Questions?
+
+If you need support or have questions about Zodiac, join the [Gnosis Guild Discord](https://discord.gnosisguild.org).
