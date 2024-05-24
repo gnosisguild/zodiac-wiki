@@ -1,21 +1,41 @@
-## About zodiac.wiki
+import React from 'react';
 
-zodiac.wiki is an open, living resource for DAOs. It is home to a shared library of reading materials, documentation, stories, and a pattern language describing common problems and offering practical responses for organizations. While DAOs collectively steward the resource and take responsibility for its maintenance, anyone is able to create an account and contribute.
-
-![Zodiac.wiki](/Zodiac-story-library.jpg)
-
-## Documentation
-
-The documentation on zodiac.wiki is for the Zodiac open standard. The expansion pack for DAOs, Zodiac is a collection of tools built according to an open standard. The Zodiac open standard enables DAOs to act more like constellations, connecting protocols, platforms, and chains, no longer confined to monolithic designs. [View documentation](/documentation)
-
-## Patterns
-
-The patterns on zodiac.wiki describe common problems and offers practical responses for organizations. By co-developing and co-organizing a pattern language together, the hope is that deeper insight will be revealed. [View all patterns](/patterns)
-
-## Library
-
-The Library is a collectively curated selection of texts related to decentralized governance. Ranging from books to hyperlinks, the library items are considered by the Zodiac ecosystem to be rich, informative, or historically important. [View the library](/library)
-
-## Stories
-
-The Stories section on zodiac.wiki is an archive of inactive, failed, and otherwise deceased crypto projects with lessons worth remembering. The lessons distilled here may later be shaped into patterns. [View all stories](/stories)
+export default function Page() {
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', gridTemplateRows: 'auto auto' }}>
+      <div style={{ gridColumn: 'span 2', textAlign: 'left' }}>
+        <h1>Zodiac Wiki</h1>
+        <p><img src="/Zodiac-story-library.jpg" alt="Zodiac Library" style={{ maxWidth: '100%', height: 'auto' }} /></p>
+        <p>zodiac.wiki is an open, living resource for DAOs. It is home to a shared library of reading materials, documentation, stories, and a pattern language describing common problems and offering practical responses for organizations. While DAOs collectively steward the resource and take responsibility for its maintenance, anyone is able to create an account and contribute.</p>
+      </div>
+      <div>
+        <h2>Documentation</h2>
+        <p>
+          The documentation on zodiac.wiki is for the Zodiac open standard. The expansion pack for DAOs, Zodiac is a collection of tools built according to an open standard. The Zodiac open standard enables DAOs to act more like constellations, connecting protocols, platforms, and chains, no longer confined to monolithic designs.{' '}
+          <a href="/documentation">View documentation</a>
+        </p>
+      </div>
+      <div>
+        <h2>Patterns</h2>
+        <p>
+          The patterns on zodiac.wiki describe common problems and offers practical responses for organizations. By co-developing and co-organizing a pattern language together, the hope is that deeper insight will be revealed.{' '}
+          <a href="/patterns">View all patterns</a>
+        </p>
+      </div>
+      <div>
+        <h2>Library</h2>
+        <p>
+          The Library is a collectively curated selection of texts related to decentralized governance. Ranging from books to hyperlinks, the library items are considered by the Zodiac ecosystem to be rich, informative, or historically important.{' '}
+          <a href="/library">View the library</a>
+        </p>
+      </div>
+      <div>
+        <h2>Stories</h2>
+        <p>
+          The Stories section on zodiac.wiki is an archive of inactive, failed, and otherwise deceased crypto projects with lessons worth remembering. The lessons distilled here may later be shaped into patterns.{' '}
+          <a href="/stories">View all stories</a>
+        </p>
+      </div>
+    </div>
+  );
+}
