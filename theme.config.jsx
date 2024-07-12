@@ -19,8 +19,11 @@ export default {
     const { title } = useConfig();
     return (
       <>
-        <title>Zodiac Wiki</title>
-        <meta name="title" content={title ? title : "Zodiac Wiki"} />
+        <title>{title ? `${title} - Zodiac Wiki` : "Zodiac Wiki"}</title>
+        <meta
+          name="title"
+          content={title ? `${title} - Zodiac Wiki` : "Zodiac Wiki"}
+        />
         <meta
           name="description"
           content="An open, living resource for DAOs and documentation of the Zodiac standard."
@@ -28,7 +31,10 @@ export default {
 
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.zodiac.wiki/" />
-        <meta property="og:title" content="Zodiac Wiki" />
+        <meta
+          property="og:title"
+          content={title ? `${title} - Zodiac Wiki` : "Zodiac Wiki"}
+        />
         <meta
           property="og:description"
           content="An open, living resource for DAOs and documentation of the Zodiac standard."
@@ -40,7 +46,10 @@ export default {
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://www.zodiac.wiki/" />
-        <meta property="twitter:title" content="Zodiac Wiki" />
+        <meta
+          property="twitter:title"
+          content={title ? `${title} - Zodiac Wiki` : "Zodiac Wiki"}
+        />
         <meta
           property="twitter:description"
           content="An open, living resource for DAOs and documentation of the Zodiac standard."
