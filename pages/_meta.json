@@ -2,5 +2,8 @@
   "index": {
     "display": "hidden",
     "title": "Home"
+  },
+  "disclaimer": {
+    "display": "hidden"
   }
 }

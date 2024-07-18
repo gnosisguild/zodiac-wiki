@@ -1,5 +1,5 @@
 import { useConfig } from "nextra-theme-docs";
-import Footer from './components/Footer';  // Import your custom footer
+import Footer from "./components/Footer";
 
 export default {
   logo: <span>Zodiac Wiki</span>,
@@ -61,7 +61,7 @@ export default {
     );
   },
   footer: {
-    component: <Footer />,  // Use your custom footer component
+    component: <Footer />,
   },
   // ... other theme options
 };
