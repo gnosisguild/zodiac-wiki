@@ -1,0 +1,4 @@
+/* Hide the disclaimer link in the sidebar */
+.nextra-sidebar-container a[href="/disclaimer"] {
+  display: none;
+}
