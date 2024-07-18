@@ -1,4 +1,5 @@
 import { useConfig } from "nextra-theme-docs";
+import Footer from "./components/Footer";
 
 export default {
   logo: <span>Zodiac Wiki</span>,
@@ -28,7 +29,6 @@ export default {
           name="description"
           content="An open, living resource for DAOs and documentation of the Zodiac standard."
         />
-
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.zodiac.wiki/" />
         <meta
@@ -43,7 +43,6 @@ export default {
           property="og:image"
           content="https://www.zodiac.wiki/meta_img.jpg"
         />
-
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://www.zodiac.wiki/" />
         <meta
@@ -60,6 +59,9 @@ export default {
         />
       </>
     );
+  },
+  footer: {
+    component: <Footer />,
   },
   // ... other theme options
 };
