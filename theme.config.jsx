@@ -17,7 +17,9 @@ export default {
     defaultMenuCollapseLevel: 1,
   },
   head: function useHead() {
-    const { title } = useConfig();
+    const {
+      frontMatter: { title, description },
+    } = useConfig();
     return (
       <>
         <title>{title ? `${title} - Zodiac Wiki` : "Zodiac Wiki"}</title>
@@ -27,7 +29,10 @@ export default {
         />
         <meta
           name="description"
-          content="An open, living resource for DAOs and documentation of the Zodiac standard."
+          content={
+            description ||
+            "An open, living resource for DAOs and documentation of the Zodiac standard."
+          }
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.zodiac.wiki/" />
@@ -37,7 +42,10 @@ export default {
         />
         <meta
           property="og:description"
-          content="An open, living resource for DAOs and documentation of the Zodiac standard."
+          content={
+            description ||
+            "An open, living resource for DAOs and documentation of the Zodiac standard."
+          }
         />
         <meta
           property="og:image"
@@ -51,7 +59,10 @@ export default {
         />
         <meta
           property="twitter:description"
-          content="An open, living resource for DAOs and documentation of the Zodiac standard."
+          content={
+            description ||
+            "An open, living resource for DAOs and documentation of the Zodiac standard."
+          }
         />
         <meta
           property="twitter:image"
