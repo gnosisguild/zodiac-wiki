@@ -1,3 +1,8 @@
+---
+title: "Zodiac Custom Module"
+description: "Learn the fundamental concepts of Zodiac modules while building a super-simple example of a Custom Module."
+---
+
 # Custom Module
 
 ![Custom Module](/Banner-custom.jpg)
@@ -24,9 +29,9 @@ This will add three files to your working directory: `Button.sol`, `MockSafe.sol
 
 Alternatively, you can create each of the files manually and copy the code from [the gist](https://gist.github.com/auryn-macmillan/105ae8f09c34406997d217ee4dc0f63a).
 
-- `Button.sol` is a contract with one function, `pushButton()`, which increments a counter, `pushes`. The `pushButton()` function is only callable by the contract's "owner", which will be our Gnosis Safe.
-- `MockSafe.sol` is a mock of the Gnosis Safe that we'll use for simplicity as we build and test in our local environment. Later, we'll replace it with a real Gnosis Safe on a public test network to ensure our module works.
-- `MyModule.sol` is where you'll be adding your own code to control the Gnosis Safes and make it push the button in our `Button.sol` contract.
+- `Button.sol` is a contract with one function, `pushButton()`, which increments a counter, `pushes`. The `pushButton()` function is only callable by the contract's "owner", which will be our Safe.
+- `MockSafe.sol` is a mock of the Safe that we'll use for simplicity as we build and test in our local environment. Later, we'll replace it with a real Safe on a public test network to ensure our module works.
+- `MyModule.sol` is where you'll be adding your own code to control the Safes and make it push the button in our `Button.sol` contract.
 
 ### Deploy Button and MockSafe
 
@@ -66,7 +71,7 @@ You're all set up now! Let's start building. 🎉
 
 ### What is a module?
 
-By default, Gnosis Safes operate as multisig wallets, requiring confirmation from n of m signers in order to execute transactions. However, in addition to (or instead of) using the multisig logic, you can enable "modules" on your Gnosis Safe. Modules are simply addresses that are allowed to bypass the normal multisig logic by calling special functions, `execTransactionFromModule()` or `execTransactionFromModuleReturnData()`.
+By default, Safes operate as multisig wallets, requiring confirmation from n of m signers in order to execute transactions. However, in addition to (or instead of) using the multisig logic, you can enable "modules" on your Safe. Modules are simply addresses that are allowed to bypass the normal multisig logic by calling special functions, `execTransactionFromModule()` or `execTransactionFromModuleReturnData()`.
 
 Earlier, you deployed and set up a Mock Safe and a Button that can only be pushed by the Mock Safe.
 
@@ -176,7 +181,7 @@ Once it's deployed, you can expand it to see your `pushButton()` function, along
 
 Safes must explicitly enable addresses as modules to give them access to the `execTransactionFromModule()` function. So, before your `pushButton` function will work, you'll need to enable your module on your Safe by calling the `enableModule()` function.
 
-**Note: a real Gnosis Safe can have multiple modules enabled at once, but our Mock Safe can have only one.**
+**Note: a real Safe can have multiple modules enabled at once, but our Mock Safe can have only one.**
 
 ### Push the button!
 
@@ -186,13 +191,13 @@ Go ahead, click it a few more times. You've earned it.
 
 Make sure to try pushing the button directly in the button contract to confirm that it fails unless it is called by the Safe.
 
-Now you're ready to do this on a real Gnosis Safe!
+Now you're ready to do this on a real Safe!
 
 ## 04 Deploy To Rinkeby
 
 ### Create a Safe
 
-Navigate to rinkeby.gnosis-safe.io/app/ and create a new Gnosis Safe.
+Navigate to rinkeby.gnosis-safe.io/app/ and create a new Safe.
 
 ![Create a Safe](/Custom08.png)
 
@@ -206,7 +211,7 @@ Deploy your `Button` contract and set its owner to your newly created Safe's add
 
 Deploy your `MyModule` using your newly created Safe's address for the `_owner` parameter and your newly deployed Button contract's address for the `_button` parameter. Make sure you have `MyModule.sol` opened, otherwise it will not show up in the "Deploy and Run Transactions" tab.
 
-In the Gnosis Safe app, navigate to the `APPS` tab and select the Zodiac Safe App.
+In the Safe app, navigate to the `APPS` tab and select the Zodiac Safe App.
 
 ![Zodiac Safe App](/Custom10.png)
 
@@ -268,7 +273,7 @@ Once that transaction has been confirmed, you should see a new "contract interac
 
 ![Contract Interaction](/Custom20.png)
 
-Congratulations! You've successfully built a Zodiac module, deployed it to a public test network, and controlled a Gnosis Safe with it.
+Congratulations! You've successfully built a Zodiac module, deployed it to a public test network, and controlled a Safe with it.
 
 ## Questions?
 
