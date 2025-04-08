@@ -1,94 +1,154 @@
 ---
-title: "Zodiac Pilot: Member Tutorial"
-description: "Zodiac Pilot is a Chrome extension that enables users to simulate, record, and batch dapp transactions on behalf of a DAO or other onchain entity."
+title: "Zodiac Pilot: Operator Tutorial"
+description: "Zodiac Pilot is a browser-based tool for Safe accounts that enables users to build and execute multi-step transactions across multiple dapps."
 ---
 
-# Pilot Extension: Member Tutorial
+# Zodiac Pilot Operator Tutorial
 
-![Pilot Extension](/Pilot00.png)
+![Pilot Extension Interface 8](/pilot-banner.png)
 
 ### About Zodiac Pilot
 
-Zodiac Pilot is a [Chrome extension](https://chrome.google.com/webstore/detail/zodiac-pilot/jklckajipokenkbbodifahogmidkekcb?hl=en&authuser=0) that enables users to simulate, record, and batch dapp transactions on behalf of a DAO or other onchain entity. By using the Pilot extension, owners of a Safe (avatar) or any address designated in a mod like the [Roles Modifier](/documentation/roles-modifier) can verify dapp interactions before submitting them as a multi-send batch transaction for gas savings and easy signing. [Learn more about the Zodiac Pilot Extension](/documentation/pilot-extension).
+Zodiac Pilot is a browser-based tool for Safe accounts that enables users to build and execute multi-step transactions across multiple dapps. It combines modular batching, [programmable permissions](/documentation/roles-modifier), and a built-in sandbox environment to simulate transactions before they’re sent onchain. 
 
-Note: To use Zodiac Pilot, you must either be an owner on the Safe or have an address with whitelisted permissions set in a modifier like the [Roles Modifier](/documentation/roles-modifier) or [Delay Modifier](/documentation/delay-modifier).
+Designed to streamline treasury, governance, and DeFi workflows, Pilot reduces risk and coordination overhead by letting users manage execution directly from a side panel interface. [[Learn more]](/documentation/pilot-extension)
 
-## 01 Get started
+---
 
-### Install Zodiac Pilot
+### Terminology
 
-Visit the [Zodiac Pilot website](https://pilot.gnosisguild.org/) and click on "Install Extension."
+- **Pilot Signer**: the EOA wallet that creates and signs transactions.
+- **Safe Account**: the smart contract account being acted on.
+- **Route**: a configured account path that defines how a Pilot Signer can interact with a Safe Account.
+- **Batch:** a bundle of transactions created in Pilot’s side panel and submitted together for execution.
 
-This will take you to the [Chrome Web Store](https://chrome.google.com/webstore/detail/zodiac-pilot/jklckajipokenkbbodifahogmidkekcb), where you can install the extension on any Chrome-enabled browser (Google Chrome, Brave, Opera, Edge).
+---
 
-![Install Zodiac Pilot](/Pilot01.png)
+## 01 Get Started
 
-Once installed, find the app in your browser's extension list or visit [the Zodiac Pilot homepage](https://pilot.gnosisguild.org/).
+### Install the Pilot Extension
 
-## 02 Add a connection
+1. Go to [pilot.gnosisguild.org](http://pilot.gnosisguild.org/)
+2. Using a Chromium-based browser (Google Chrome, Brave, Opera, Edge), add the Pilot extension.
+3. Pin the extension to your browser toolbar for easy access.
 
-When you open the Zodiac Pilot extension, it will look like this:
+### Connect Signer Wallet
 
-![Add a connection](/Pilot02.png)
+Before creating a route (which defines the Pilot Signer and the Safe Account it will act on), you’ll need to connect a signer wallet.
 
-In order to simulate and batch transactions, you must create a connection.
+1. Open the Pilot side panel by clicking the Chrome extension button in your browser toolbar.
+2. Click **+Add route** — this will open Pilot’s companion app. 
+3. In the companion app, click **Connect Pilot Signer** and choose the EOA you’ll use to sign transactions and/or set up account routes.
+    
+*Note: If the companion app has limited functionality, make sure the side panel is open.*
+    
 
-Note: Connection settings are automatically saved during creation. You can view and adjust connection settings at any time from the [Zodiac Pilot homepage](https://pilot.gnosisguild.org/).
+### Add New Safe Account
 
-### Configure Accounts and Settings
+Once a signer account is connected, link a Safe that the Pilot Signer will act on behalf of.
 
-- **Connection label:** Enter a name for the connection.
-- **Pilot Account:** This account refers to the specific address intended to act as the pilot for the Safe (avatar). To be a pilot, you must either be an owner on the Safe or have an address with whitelisted permissions set in the [Roles Modifier](/documentation/roles-modifier). To connect the Pilot Account, log in via WalletConnect or MetaMask.
-- **Piloted Safe:** This account refers to the address of the Safe from which transactions will be executed. Once the Pilot Account is connected, any associated Safe addresses will appear in the dropdown menu, but you can also input any Safe address in the field.
-- **Zodiac Mod:** This section allows you to specify whether you'd like to submit the multi-send transaction directly to the Safe or through a Zodiac mod. The dropdown menu will automatically include any compatible Zodiac mod already attached to the Piloted Safe (supported mods include the Roles Modifier and Delay Modifier).
+1. Add a descriptive label (e.g. “DAO Treasury” or “NFT Vault”).
+2. Select a chain from the dropdown.
+3. Paste a Safe address or select from the list.
+4. Click **Create**. 
 
-❗ If the Pilot Account is an owner, choose "No mod — Direct execution" to submit transactions directly to the Safe.
+You have now added and labeled a Safe Account — an account to be acted on. Add more by clicking **+New Safe Account** from the left menu.
 
-❗ If the Pilot Account is *not* an owner, the transaction should be routed through a Zodiac modifier:
+### Select Pilot Signer and Choose Route
 
-- Routing through the [Roles Modifier](/documentation/roles-modifier) allows owners to set the Pilot Account to an address with granular permissions specified in the mod. Be sure to choose the correct Role ID associated with the Pilot Account.
-- Routing through the [Delay Modifier](/documentation/delay-modifier) allows owners to set the Pilot Account to a module — including an EOA — enabled on the mod. Submitted transactions will be pre-authorized but will need triggering after the configured delay.
+You must now select the Pilot Signer to complete the route setup.
 
-In the example below, transactions will be submitted directly to the Safe.
+1. Back in the Pilot side panel, click **Complete route setup to submit** or edit the Safe Account from the Safe Account page.
+2. In the Pilot Signer field, select an eligible signer (a.k.a. initiator) from the dropdown. This could be the signer wallet you used to initially connect to Pilot, but it also includes any address connected to the Safe via ownership, delegated roles, nested Safes, modules, or any combination.
+3. Choose a route. Pilot surfaces all viable routes between accounts so you can select the most efficient path.
+4. Click **Save**.
 
-![Configure Accounts and Settings](/Pilot03.png)
+You have now created a route from the Pilot Signer to the Safe Account. The Pilot Signer can now build and signs transactions for the selected Safe Account in Pilot.
 
-Your connection is now set.
+![Pilot Extension Interface 2](/pilot-routes-dark.png)
 
-Remember: Connection settings are automatically saved during creation. You can view and adjust connection settings at any time from the [Zodiac Pilot homepage](https://pilot.gnosisguild.org/).
+---
 
-![Connection Settings](/Pilot04.png)
+## 02 Execute Transactions
 
-## 03 Launch Zodiac Pilot
+### Record a Batch of Transactions
 
-Once you have adjusted the settings and specified the correct accounts, you are ready to start using Zodiac Pilot.
+1. Open the Pilot side panel.
+2. Navigate to a dapp (e.g. CoW Swap).
+3. Connect your wallet and select “Pilot” (not WalletConnect, MetaMask, etc.) — this links the designated Safe Account directly to the dapp. (If "Pilot" doesn't show up in the list, make sure your extension is installed and active.)
+4. Interact with the dapp as usual. Each transaction will be recorded automatically in the side panel, where you can also delete, copy txn data, and more.
+    
+    *Note: If you close the side panel before submitting the batch, your progress will be lost.*
+    
+5. To add more transactions, simply interact with other dapps. Each step is automatically recorded and simulated in a local sandbox via Tenderly as you go. Edit, delete, and modify transactions as needed.
+6. When ready, click **Submit** at the bottom of the panel.
 
-Click the Launch button at the top-right of the app or click on the connection name if you're on the Pilot homepage.
+<video
+  src="/pilot-seamless-dapp-Interactions.mp4"
+  autoPlay
+  muted
+  playsInline
+  loop
+  controls
+  style={{ width: "100%", borderRadius: "8px", marginTop: "1rem" }}
+/>
 
-While Pilot works with almost every dapp that uses an injected wallet, we provide a list of confirmed working dapps in the connection toolbar. You may also enter the URL of a dapp directly in Pilot’s URL bar. (Note: If you run into problems with a dapp, [let us know](https://discord.gnosisguild.org). We may be able to add support for it in an upcoming release.)
+### Review and Sign Transaction Bundle
 
-![Launch Zodiac Pilot](/Pilot05.png)
+1. Once the batch of transactions are submitted through Pilot’s side panel, the companion app will open with the transaction information. 
+    
+    *Note: If you close the page or navigate away, your transaction batch won't be visible by default. Recover it using your browser history or the back button.*
+    
+2. Review all transaction details: token flows, approvals, permission checks, account info, and signer details.
+3. Click **Sign** to confirm. This will prompt your Pilot Signer wallet to sign the transaction batch.
 
-### Simulate and record transactions
+![Pilot Extension Interface 3](/pilot-sign-dark.png)
 
-From here, how Zodiac Pilot is used will depend on the dapp.
+### Delegate with Roles (optional)
 
-Generally speaking, the Pilot Account impersonates the Piloted Safe while interacting with the dapp. Transactions will be recorded in the right panel and automatically simulated in a temporary blockchain fork. That way it appears to the dapp that any submitted transaction is immediately signed and mined.
+Want to delegate execution? Use [Zodiac Roles](https://roles.gnosisguild.org/) to set up permissioned access. 
 
-✔️ Here is a screenshot of the Zodiac Pilot UI connected to Lido, which shows that the transaction simulation and role permission in this interaction are successful:
+With Roles, you can:
 
-![Zodiac Pilot UI with Lido](/Pilot06.png)
+- Create and assign custom roles to any address
+- Define granular permissions for functions, addresses, and values
+- Set frequency and threshold limits for added security
+- Manage roles programmatically using the SDK and subgraph
 
-❌ Here is a screenshot of the Zodiac Pilot UI connected to Balancer, which shows that the transaction simulation was successful but the role permission was NOT successful. (In this example, the Roles Modifier wasn't configured to allow the Pilot Account to execute this specific transaction.)
+Learn more about Zodiac Roles [here](/documentation/roles-modifier).
 
-![Zodiac Pilot UI with Balancer](/Pilot07.png)
+![Pilot Extension Interface 4](/pilot-roles.png)
 
-### Submitting transactions
+---
 
-Once the transactions are verified, the Pilot Account can then sign and submit them as a multi-send batch to the Safe by hitting "Submit" at the bottom of the right panel.
+## 03 Manage Accounts
 
-From there, the normal Safe mechanism for approving a transaction bundle will take over.
+### Switch Accounts
 
-## Questions?
+1. Navigate to the **Safe Accounts** page in the left-hand menu of the Pilot companion app.
+2. Hover over any account to reveal options.
+3. Click **Launch** to switch accounts.
+
+*Note: You can also switch accounts from the dropdown in the Pilot side panel.*
+
+![Pilot Extension Interface 1](/pilot-account-overview.png)
+
+### Edit or Delete Accounts
+
+1. Navigate to the **Safe Accounts** page in the left-hand menu of the Pilot companion app.
+2. Hover over the account to reveal options.
+3. Click the three-dot menu to edit or delete the account.
+
+### Send Tokens
+
+1. Navigate to the **Send Tokens** page from the left-hand menu of the Pilot companion app. (This is also accessible by hovering over a given asset from the Balances page.)
+2. Enter the recipient’s address.
+3. Select a token from the dropdown, then enter the amount.
+
+![Pilot Extension Interface 5](/pilot-balances-dark.png)
+
+---
+
+# Questions?
 
 If you need support or have questions about Zodiac, join the [Gnosis Guild Discord](https://discord.gnosisguild.org).
